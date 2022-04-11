@@ -8,6 +8,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'petstagram-demo.herokuapp.com',
+    'localhost',
+    '127.0.0.1',
 ]
 
 DJANGO_APPS = (
