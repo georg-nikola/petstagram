@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-j-69u_le9h(9f_(a9enp-pnr0n#ox*i!nmk6vgkorhtcj)%nly'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'petstagram-demo.herokuapp.com',
