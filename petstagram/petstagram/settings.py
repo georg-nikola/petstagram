@@ -1,8 +1,18 @@
 from pathlib import Path
+import os
+from pathlib import Path
+
+import environ
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-j-69u_le9h(9f_(a9enp-pnr0n#ox*i!nmk6vgkorhtcj)%nly'
+SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = True
 
@@ -68,10 +78,10 @@ WSGI_APPLICATION = 'petstagram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'debg1f4ojomh4a',
-        'USER': 'rsmuoybavxbwwz',
-        'PASSWORD': '84b6120bb4d3449301932fb9692d60156f1220f3f7f2e30fce474802618f1595',
-        'HOST': 'ec2-63-32-248-14.eu-west-1.compute.amazonaws.com',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASS'),
+        'HOST': env('DB_URL'),
         'PORT': '5432',
     }
 }
