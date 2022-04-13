@@ -35,15 +35,20 @@ class CreatePetView(auth_mixins.LoginRequiredMixin, views.CreateView):
         kwargs['user'] = self.request.user
         return kwargs
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['is_owner'] = self.object.user == self.request.user
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['is_owner'] = self.object.user == self.request.user
+    #     return context
 
 
 class EditPetView(views.UpdateView):
     template_name = 'main/pet_edit.html'
     form_class = EditPetForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_owner'] = self.object.user == self.request.user
+        return context
 
 
 class DeletePetView(views.DeleteView):
