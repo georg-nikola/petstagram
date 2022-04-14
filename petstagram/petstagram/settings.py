@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 
 import environ
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -12,11 +13,11 @@ environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = None
 
-DEBUG = os.getenv('DEBUG') == 'True'
+DEBUG = False
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+ALLOWED_HOSTS = None
 
 DJANGO_APPS = (
     'django.contrib.admin',
@@ -71,16 +72,44 @@ WSGI_APPLICATION = 'petstagram.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASS'),
-        'HOST': os.getenv('DB_URL'),
-        'PORT': '5432',
+DATABASES = None
+if os.getenv('APP_ENVIRONMENT') == 'production':
+    SECRET_KEY = os.getenv('SECRET_KEY')
+
+    DEBUG = os.getenv('DEBUG') == 'True'
+
+    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASS'),
+            'HOST': os.getenv('DB_URL'),
+            'PORT': '5432',
+        }
     }
-}
+else:
+    SECRET_KEY = 'pft%$g(z2=9!w8z&yuiehrfrjwhxv6oj6^!96w-dq(v#2x-$ih'
+
+    DEBUG = True
+
+    ALLOWED_HOSTS = [
+        '127.0.0.1',
+        'localhost'
+    ]
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'petstagram_db',
+            'USER': 'postgres',
+            'PASSWORD': '1123QwER',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -131,4 +160,3 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.PetstagramUser'
-
