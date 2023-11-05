@@ -127,3 +127,18 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+*/.idea/*
+*/.vscode/*
+*/.vs/*
+*/.git/*
+*/.gitignore/*
+*/.gitattributes/*
+*/.gitmodules/*
+*/.gitkeep/*
+*/.gitconfig/*
+*/.gitlab-ci.yml/*
+*/.gitlab/*
+*/.gitlab-ci.yml/*
+*/.gitlab-ci.yml/*
+*/.gitlab-ci

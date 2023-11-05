@@ -33,6 +33,22 @@ python manage.py runserver
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+## Docker Setup
+
+This project uses Docker for easy setup and deployment. Here's how to get started:
+
+1. Install Docker and Docker Compose on your machine. You can find the instructions on the official Docker docs.
+
+2. Build the Docker images:
+
+```bash
+docker-compose build
+
+docker-compose up
+
+docker-compose down
+```
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
