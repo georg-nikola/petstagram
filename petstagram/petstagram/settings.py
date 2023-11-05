@@ -104,9 +104,9 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'petstagram_db',
-            'USER': 'petstagram',
+            'USER': 'postgres',
             'PASSWORD': '1123QwER',
-            'HOST': '127.0.0.1',
+            'HOST': 'db',
             'PORT': '5432',
         }
     }
